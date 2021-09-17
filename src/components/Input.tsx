@@ -9,24 +9,29 @@ type propsType = {
   setError: (error: string | null) => void;
 };
 
-export const Input = (props: propsType) => {
+export const Input = ({
+  title,
+  setTitle,
+  callBack,
+  error,
+  setError,
+}: propsType) => {
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    props.setError(null);
-    props.setTitle(e.currentTarget.value);
+    setError(null);
+    setTitle(e.currentTarget.value);
   };
   const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      props.callBack();
-      props.setTitle("");
-      props.setError(null);
+      setError(null);
+      callBack();
+      setTitle("");
     }
   };
   return (
     <>
-
       <input
-        className={props.error === null ? styles.error : ""}
-        value={props.title}
+        className={error === null ? styles.error : ""}
+        value={title}
         onChange={onChangeHandler}
         onKeyPress={onKeyPressHandler}
       />
