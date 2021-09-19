@@ -16,10 +16,12 @@ export const Input = ({
   error,
   setError,
 }: propsType) => {
+
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setError(null);
     setTitle(e.currentTarget.value);
   };
+
   const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       setError(null);
@@ -28,13 +30,11 @@ export const Input = ({
     }
   };
   return (
-    <>
       <input
         className={error === null ? styles.error : ""}
         value={title}
         onChange={onChangeHandler}
         onKeyPress={onKeyPressHandler}
       />
-    </>
   );
 };
