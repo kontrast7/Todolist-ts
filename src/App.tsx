@@ -116,7 +116,11 @@ function App() {
 
   return (
     <div className="App">
-     <AddItemForm callBack={addTodolist} />
+
+      <div className="addItemWrapper">
+        <AddItemForm callBack={addTodolist} />
+      </div>
+
       {todolists.map((tl) => {
         let allTodolistTasks = tasks[tl.id];
         let tasksForTodolist = allTodolistTasks;

@@ -1,5 +1,7 @@
 import React, { ChangeEvent } from "react";
 import { useState } from "react";
+import {Input} from "@material-ui/core";
+import s from "./EditableSpan.module.css"
 
 type propsType = {
   title: string;
@@ -21,13 +23,14 @@ export const EditableSpan = (props: propsType) => {
   };
 
   return edit ? (
-    <input
-      value={title}
-      onBlur={editOff}
-      onChange={onChangeHandler}
-      autoFocus
-    />
+      <Input value={title}
+             onBlur={editOff}
+             onChange={onChangeHandler}
+             autoFocus/>
   ) : (
-    <span onDoubleClick={editOn}>{title}</span>
+
+        <span className={s.span} onDoubleClick={editOn}>{title}</span>
+
+
   );
 };

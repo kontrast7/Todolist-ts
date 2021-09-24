@@ -1,0 +1,25 @@
+.wrapper {
+    max-width: 310px;
+    margin: 10px;
+    border: 1px solid #3b3b3b;
+    border-radius:5px;
+}
+.btns {
+    margin: 7px;
+}
+.nameTodo {
+    margin-left: 7px;
+}
+
+
+.todo {
+    display: grid;
+    grid-template-columns: 34px 179px 59px;
+    grid-template-rows: 1fr;
+    gap: 2px 3px;
+    grid-template-areas:
+    "check span btn";
+}
+.check { grid-area: check; }
+.span { grid-area: span; }
+.btn { grid-area: btn; }

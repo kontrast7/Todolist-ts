@@ -1,11 +1,18 @@
 .App {
   padding: 30px;
   display: flex;
+  flex-wrap: wrap;
+}
+.addItemWrapper {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width: 100%;
 }
 
-.App > div {
+/*.App > div {
   margin-right: 50px;
-}
+}*/
 
 .error {
   border: red 1px solid;

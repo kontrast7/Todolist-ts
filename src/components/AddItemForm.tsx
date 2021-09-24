@@ -1,5 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
+import { Input } from "@material-ui/core";
 import {Buttons} from "./Buttons";
+import s from "./AddItemForm.module.css"
 
 type propsType={
     callBack:(title:string)=>void
@@ -29,13 +31,17 @@ export const AddItemForm=({callBack}:propsType)=>{
     }
     
     return(
-        <div>
-            <input value={title}
+        <div className={s.wrapper}>
+            <Input value={title}
+                   onChange={onChangeHandler}
+                   onKeyPress={onKeyPressHandler}
+                   className={error ? "error" : ""}/>
+           {/* <input value={title}
                    onChange={onChangeHandler}
                    onKeyPress={onKeyPressHandler}
                    className={error ? "error" : ""}
-            />
-            <Buttons nameBtn={"+"} callback={addTask}/>
+            />*/}
+            <Buttons nameBtn={'+'} callback={addTask} variant="contained"/>
             {error && <div className="error-message">{error}</div>}
         </div>
     )

@@ -3,7 +3,8 @@ import { FilterValuesType } from "./App";
 import { AddItemForm } from "./components/AddItemForm";
 import { EditableSpan } from "./components/EditableSpan";
 import { Buttons } from "./components/Buttons";
-
+import { Checkbox} from "@material-ui/core";
+import s from "./Todolist.module.css"
 
 export type TaskType = {
   id: string;
@@ -44,12 +45,11 @@ export function Todolist(props: PropsType) {
   };
 
   return (
-    <div>
-      <h3>
+    <div className={s.wrapper}>
+      <h3 className={s.nameTodo}>
 
         <EditableSpan title={props.title} callBack={editSpanHandler} />
-  
-        <Buttons nameBtn={"x"} callback={removeTodolist} />
+        <Buttons nameBtn={"x"} callback={removeTodolist} variant={'text'} />
 
       </h3>
 
@@ -57,39 +57,48 @@ export function Todolist(props: PropsType) {
       {/* <Input title={titleInput} setTitle={setTitleInput} callBack={()=>addTaskHandler(titleInput)} error={error} setError={setError}/>
       <Buttons nameBtn={"ADD"} callback={()=>addTaskHandler(titleInput)}/>*/}
       {/*//РАЗБИТИЕ------------------*/}
-      
-     <AddItemForm callBack={addTaskHandler} />
 
-      <ul>
+        <AddItemForm callBack={addTaskHandler} />
+
+
+
+
+      <div>
         {props.tasks.map((t) => {
           return (
-            <li key={t.id} className={t.isDone ? "is-done" : ""}>
-              <input
+            <div key={t.id} className={t.isDone ? "is-done" : ""}>
+              <div className={s.todo}>
+              <Checkbox className={s.check} onChange={(e) => onChangeTaskHandler(e, t.id)} checked={t.isDone}/>
+            {/*  <input
                 type="checkbox"
                 onChange={(e) => onChangeTaskHandler(e, t.id)}
                 checked={t.isDone}
-              />
+              />*/}
               <EditableSpan
                 title={t.title}
                 callBack={() => updateNameTasksHandler(t.title, t.id)}
               />
-              <Buttons nameBtn={"x"} callback={() => removeTaskHandler(t.id)} />
-            </li>
+              <Buttons variant={'text'} nameBtn={"x"} callback={() => removeTaskHandler(t.id)} />
+              </div>
+            </div>
           );
         })}
-      </ul>
-      <div>
+      </div>
+      <div className={s.btns}>
         <Buttons
+            variant={'contained'}
           className={props.filter === "all" ? "active-filter" : ""}
           nameBtn={"All"}
           callback={() => onClickFilterHandler("all")}
         />
         <Buttons
+            variant={'contained'}
           className={props.filter === "active" ? "active-filter" : ""}
           nameBtn={"Active"}
           callback={() => onClickFilterHandler("active")}
         />
         <Buttons
+            variant={'contained'}
           className={props.filter === "completed" ? "active-filter" : ""}
           nameBtn={"Completed"}
           callback={() => onClickFilterHandler("completed")}
