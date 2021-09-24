@@ -2,7 +2,8 @@ import React, { ChangeEvent } from "react";
 import { FilterValuesType } from "./App";
 import { AddItemForm } from "./components/AddItemForm";
 import { EditableSpan } from "./components/EditableSpan";
-import { Button } from "./components/Button";
+import { Buttons } from "./components/Buttons";
+
 
 export type TaskType = {
   id: string;
@@ -45,15 +46,19 @@ export function Todolist(props: PropsType) {
   return (
     <div>
       <h3>
+
         <EditableSpan title={props.title} callBack={editSpanHandler} />
-        <Button nameBtn={"x"} callback={removeTodolist} />
+  
+        <Buttons nameBtn={"x"} callback={removeTodolist} />
+
       </h3>
 
       {/*//РАЗБИТИЕ------------------*/}
       {/* <Input title={titleInput} setTitle={setTitleInput} callBack={()=>addTaskHandler(titleInput)} error={error} setError={setError}/>
-      <Button nameBtn={"ADD"} callback={()=>addTaskHandler(titleInput)}/>*/}
-      <AddItemForm callBack={addTaskHandler} />
-      {/*//--------------------------*/}
+      <Buttons nameBtn={"ADD"} callback={()=>addTaskHandler(titleInput)}/>*/}
+      {/*//РАЗБИТИЕ------------------*/}
+      
+     <AddItemForm callBack={addTaskHandler} />
 
       <ul>
         {props.tasks.map((t) => {
@@ -68,23 +73,23 @@ export function Todolist(props: PropsType) {
                 title={t.title}
                 callBack={() => updateNameTasksHandler(t.title, t.id)}
               />
-              <Button nameBtn={"x"} callback={() => removeTaskHandler(t.id)} />
+              <Buttons nameBtn={"x"} callback={() => removeTaskHandler(t.id)} />
             </li>
           );
         })}
       </ul>
       <div>
-        <Button
+        <Buttons
           className={props.filter === "all" ? "active-filter" : ""}
           nameBtn={"All"}
           callback={() => onClickFilterHandler("all")}
         />
-        <Button
+        <Buttons
           className={props.filter === "active" ? "active-filter" : ""}
           nameBtn={"Active"}
           callback={() => onClickFilterHandler("active")}
         />
-        <Button
+        <Buttons
           className={props.filter === "completed" ? "active-filter" : ""}
           nameBtn={"Completed"}
           callback={() => onClickFilterHandler("completed")}

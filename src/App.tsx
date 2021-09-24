@@ -10,7 +10,6 @@ type TodolistType = {
   title: string;
   filter: FilterValuesType;
 };
-
 type TasksStateType = {
   [key: string]: Array<TaskType>;
 };
@@ -117,11 +116,10 @@ function App() {
 
   return (
     <div className="App">
-      <AddItemForm callBack={addTodolist} />
+     <AddItemForm callBack={addTodolist} />
       {todolists.map((tl) => {
         let allTodolistTasks = tasks[tl.id];
         let tasksForTodolist = allTodolistTasks;
-
         if (tl.filter === "active") {
           tasksForTodolist = allTodolistTasks.filter((t) => !t.isDone);
         }

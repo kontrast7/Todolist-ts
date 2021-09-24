@@ -1,5 +1,5 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
-import {Button} from "./Button";
+import {Buttons} from "./Buttons";
 
 type propsType={
     callBack:(title:string)=>void
@@ -35,7 +35,7 @@ export const AddItemForm=({callBack}:propsType)=>{
                    onKeyPress={onKeyPressHandler}
                    className={error ? "error" : ""}
             />
-            <Button nameBtn={"+"} callback={addTask}/>
+            <Buttons nameBtn={"+"} callback={addTask}/>
             {error && <div className="error-message">{error}</div>}
         </div>
     )
