@@ -3,8 +3,8 @@ import { FilterValuesType } from "./App";
 import { AddItemForm } from "./components/AddItemForm";
 import { EditableSpan } from "./components/EditableSpan";
 import { Buttons } from "./components/Buttons";
-import { Checkbox} from "@material-ui/core";
-import s from "./Todolist.module.css"
+import { Checkbox } from "@material-ui/core";
+import s from "./Todolist.module.css";
 
 export type TaskType = {
   id: string;
@@ -36,8 +36,13 @@ export function Todolist(props: PropsType) {
   const editSpanHandler = (title: string) => {
     props.updateTodoListTitle(title, props.idTodolist);
   };
-  const removeTaskHandler = (taskId: string) => {props.removeTask(taskId, props.idTodolist)}
-  const onChangeTaskHandler = (e: ChangeEvent<HTMLInputElement>, taskId: string) => {
+  const removeTaskHandler = (taskId: string) => {
+    props.removeTask(taskId, props.idTodolist);
+  };
+  const onChangeTaskHandler = (
+    e: ChangeEvent<HTMLInputElement>,
+    taskId: string
+  ) => {
     props.changeTaskStatus(taskId, e.currentTarget.checked, props.idTodolist);
   };
   const updateNameTasksHandler = (title: string, taskId: string) => {
@@ -47,10 +52,8 @@ export function Todolist(props: PropsType) {
   return (
     <div className={s.wrapper}>
       <h3 className={s.nameTodo}>
-
         <EditableSpan title={props.title} callBack={editSpanHandler} />
-        <Buttons nameBtn={"x"} callback={removeTodolist} variant={'text'} />
-
+        <Buttons callback={removeTodolist} size={"small"} icon={true} />
       </h3>
 
       {/*//РАЗБИТИЕ------------------*/}
@@ -58,27 +61,27 @@ export function Todolist(props: PropsType) {
       <Buttons nameBtn={"ADD"} callback={()=>addTaskHandler(titleInput)}/>*/}
       {/*//РАЗБИТИЕ------------------*/}
 
-        <AddItemForm callBack={addTaskHandler} />
-
-
-
+      <AddItemForm callBack={addTaskHandler} />
 
       <div>
         {props.tasks.map((t) => {
           return (
             <div key={t.id} className={t.isDone ? "is-done" : ""}>
               <div className={s.todo}>
-              <Checkbox className={s.check} onChange={(e) => onChangeTaskHandler(e, t.id)} checked={t.isDone}/>
-            {/*  <input
-                type="checkbox"
-                onChange={(e) => onChangeTaskHandler(e, t.id)}
-                checked={t.isDone}
-              />*/}
-              <EditableSpan
-                title={t.title}
-                callBack={() => updateNameTasksHandler(t.title, t.id)}
-              />
-              <Buttons variant={'text'} nameBtn={"x"} callback={() => removeTaskHandler(t.id)} />
+                <Checkbox
+                  className={s.check}
+                  onChange={(e) => onChangeTaskHandler(e, t.id)}
+                  checked={t.isDone}
+                />
+                <EditableSpan
+                  title={t.title}
+                  callBack={() => updateNameTasksHandler(t.title, t.id)}
+                />
+                <Buttons
+                  callback={() => removeTaskHandler(t.id)}
+                  size={"small"}
+                  icon={true}
+                />
               </div>
             </div>
           );
@@ -86,22 +89,28 @@ export function Todolist(props: PropsType) {
       </div>
       <div className={s.btns}>
         <Buttons
-            variant={'contained'}
+          variant={"contained"}
+          size={"medium"}
           className={props.filter === "all" ? "active-filter" : ""}
           nameBtn={"All"}
           callback={() => onClickFilterHandler("all")}
+          icon={false}
         />
         <Buttons
-            variant={'contained'}
+          size={"medium"}
+          variant={"contained"}
           className={props.filter === "active" ? "active-filter" : ""}
           nameBtn={"Active"}
           callback={() => onClickFilterHandler("active")}
+          icon={false}
         />
         <Buttons
-            variant={'contained'}
+          size={"medium"}
+          variant={"contained"}
           className={props.filter === "completed" ? "active-filter" : ""}
           nameBtn={"Completed"}
           callback={() => onClickFilterHandler("completed")}
+          icon={false}
         />
       </div>
     </div>
