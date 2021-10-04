@@ -1,4 +1,3 @@
-import { v1 } from "uuid";
 import { FilterValuesType, TodolistType } from "../App";
 
 export const TodoListsReducer = (
@@ -52,10 +51,9 @@ export type allType =
 
 export type removeTodolistACType = ReturnType<typeof removeTodolistAC>;
 export type changeFilterACType = ReturnType<typeof changeFilterAC>;
-export type changeTodolistTitleACType = ReturnType<
-  typeof changeTodolistTitleAC
->;
+export type changeTodolistTitleACType = ReturnType<typeof changeTodolistTitleAC>;
 export type addTodolistACType = ReturnType<typeof addTodolistAC>;
+
 export const removeTodolistAC = (id: string) => {
   return {
     type: "REMOVE_TODO_LIST",

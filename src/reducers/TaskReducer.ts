@@ -74,9 +74,8 @@ export type addTaskACType = ReturnType<typeof addTaskAC>;
 export type changeStatusACType = ReturnType<typeof changeStatusAC>;
 export type changeTaskTitleACType = ReturnType<typeof changeTaskTitleAC>;
 export type addTodolistTasksType = ReturnType<typeof addTodolistTasksAC>;
-export type removeTaskOnDeletedTLACType = ReturnType<
-  typeof removeTaskOnDeletedTLAC
->;
+export type removeTaskOnDeletedTLACType = ReturnType<typeof removeTaskOnDeletedTLAC>;
+
 export const removeTaskAC = (id: string, todolistId: string) => {
   return {
     type: "REMOVE_TASK",
@@ -91,11 +90,7 @@ export const addTaskAC = (title: string, todolistId: string) => {
     todolistId,
   } as const;
 };
-export const changeStatusAC = (
-  id: string,
-  isDone: boolean,
-  todolistId: string
-) => {
+export const changeStatusAC = (id: string, isDone: boolean, todolistId: string) => {
   return {
     type: "CHANGE_STATUS",
     id,
@@ -103,11 +98,7 @@ export const changeStatusAC = (
     todolistId,
   } as const;
 };
-export const changeTaskTitleAC = (
-  id: string,
-  newTitle: string,
-  todolistId: string
-) => {
+export const changeTaskTitleAC = (id: string, newTitle: string, todolistId: string) => {
   return {
     type: "CHANGE_TASK_TITLE",
     id,
