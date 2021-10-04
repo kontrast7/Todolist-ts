@@ -1,51 +1,61 @@
 import React, { ChangeEvent, KeyboardEvent, useState } from "react";
-import { Input } from "@material-ui/core";
-import { Buttons } from "./Buttons";
-import s from "./AddItemForm.module.css";
+import { Button, TextField } from "@material-ui/core";
 
-type propsType = {
-  callBack: (title: string) => void;
+type AddItemFormPropsType = {
+  addItem: (title: string) => void;
 };
 
-export const AddItemForm = ({ callBack }: propsType) => {
+export function AddItemForm(props: AddItemFormPropsType) {
   let [title, setTitle] = useState("");
-  let [error, setError] = useState<string | null>(null);
+  let [error, setError] = useState(false);
 
-  const addTask = () => {
-    let newTitle = title.trim();
-    if (newTitle !== "") {
-      callBack(newTitle);
+  const addItem = () => {
+    if (title.trim() !== "") {
+      props.addItem(title);
       setTitle("");
     } else {
-      setError("Title is required");
+      setError(true);
     }
   };
+
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.currentTarget.value);
   };
+
   const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-    setError(null);
+    setError(false);
     if (e.key === "Enter") {
-      addTask();
+      addItem();
     }
   };
 
   return (
-    <div className={s.wrapper}>
-      <Input
+    <div>
+      <TextField
+        id="outlined-basic"
+        label="Title is required"
+        aria-errormessage={"Title required!"}
+        variant="outlined"
         value={title}
         onChange={onChangeHandler}
         onKeyPress={onKeyPressHandler}
+        error={error}
+        size="small"
         className={error ? "error" : ""}
       />
-      <Buttons
-        nameBtn={"+"}
-        size={"medium"}
-        callback={addTask}
+
+      <Button
         variant="contained"
-        icon={false}
-      />
-      {error && <div className="error-message">{error}</div>}
+        style={{
+          maxWidth: "37px",
+          maxHeight: "70px",
+          minWidth: "37px",
+          minHeight: "37px",
+        }}
+        onClick={addItem}
+      >
+        +
+      </Button>
     </div>
   );
-};
+}

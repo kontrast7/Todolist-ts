@@ -1,36 +1,34 @@
-import React, { ChangeEvent } from "react";
-import { useState } from "react";
-import {Input} from "@material-ui/core";
-import s from "./EditableSpan.module.css"
+import React, { ChangeEvent, useState } from "react";
 
-type propsType = {
-  title: string;
-  callBack: (title: string) =>void;
+type EditableSpanPropsType = {
+  value: string;
+  onChange: (newValue: string) => void;
 };
 
-export const EditableSpan = (props: propsType) => {
-  let [edit, setEdit] = useState(false);
-  let [title, setTitle] = useState(props.title);
-  const editOn = () => {
-    setEdit(true);
+export function EditableSpan(props: EditableSpanPropsType) {
+  let [editMode, setEditMode] = useState(false);
+  let [title, setTitle] = useState(props.value);
+
+  const activateEditMode = () => {
+    setEditMode(true);
+    setTitle(props.value);
   };
-  const editOff = () => {
-    setEdit(false);
-    props.callBack(title)
+  const activateViewMode = () => {
+    setEditMode(false);
+    props.onChange(title);
   };
-  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+  const changeTitle = (e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.currentTarget.value);
   };
 
-  return edit ? (
-      <Input value={title}
-             onBlur={editOff}
-             onChange={onChangeHandler}
-             autoFocus/>
+  return editMode ? (
+    <input
+      value={title}
+      onChange={changeTitle}
+      autoFocus
+      onBlur={activateViewMode}
+    />
   ) : (
-
-        <span className={s.span} onDoubleClick={editOn}>{title}</span>
-
-
+    <span onDoubleClick={activateEditMode}>{props.value}</span>
   );
-};
+}
