@@ -6,12 +6,6 @@ export const TodoListsReducer = (
 ) => {
   switch (action.type) {
     case "REMOVE_TODO_LIST": {
-      /* // засунем в стейт список тудулистов, id которых не равны тому, который нужно выкинуть
-   setTodolists(todolists.filter((tl) => tl.id !== id));
-   // удалим таски для этого тудулиста из второго стейта, где мы храним отдельно таски !!!!!!
-   delete tasks[id]; // удаляем св-во из объекта... значением которого являлся массив тасок
-   // засетаем в стейт копию объекта, чтобы React отреагировал перерисовкой
-   setTasks({ ...tasks });*/
       return state.filter((f) => f.id !== action.id);
     }
     case "CHANGE_FILTER": {
@@ -22,10 +16,8 @@ export const TodoListsReducer = (
       return [...state];
     }
     case "CHANGE_TODO_TITLE": {
-      // найдём нужный todolist
       const todolist = state.find((tl) => tl.id === action.id);
       if (todolist) {
-        // если нашёлся - изменим ему заголовок
         todolist.title = action.title;
       }
       return [...state];
