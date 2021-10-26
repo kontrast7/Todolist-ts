@@ -1,14 +1,38 @@
-import React, { useReducer } from "react";
-import "./App.css";
-import { TaskType, Todolist } from "./Todolist";
-import { v1 } from "uuid";
-import { AddItemForm } from "./components/AddItemForm";
-import {AppBar, Box, Button, Container, Grid, IconButton, Paper, Toolbar, Typography,} from "@material-ui/core";
-import { Menu } from "@material-ui/icons";
-import {removeTaskAC, TaskReducer, addTaskAC, changeStatusAC, changeTaskTitleAC, addTodolistTasksAC, removeTaskOnDeletedTLAC,} from "./reducers/TaskReducer";
-import {addTodolistAC, changeFilterAC, changeTodolistTitleAC, removeTodolistAC, TodoListsReducer,} from "./reducers/TodoListsReducer";
+import React, { useReducer } from 'react';
+import './App.css';
+import { TaskType, Todolist } from './Todolist';
+import { v1 } from 'uuid';
+import { AddItemForm } from './components/AddItemForm';
+import {
+  AppBar,
+  Box,
+  Button,
+  Container,
+  Grid,
+  IconButton,
+  Paper,
+  Toolbar,
+  Typography,
+} from '@material-ui/core';
+import { Menu } from '@material-ui/icons';
+import {
+  addTaskAC,
+  addTodolistTasksAC,
+  changeStatusAC,
+  changeTaskTitleAC,
+  removeTaskAC,
+  removeTaskOnDeletedTLAC,
+  TaskReducer,
+} from './reducers/TaskReducer';
+import {
+  addTodolistAC,
+  changeFilterAC,
+  changeTodolistTitleAC,
+  removeTodolistAC,
+  TodoListsReducer,
+} from './reducers/TodoListsReducer';
 
-export type FilterValuesType = "all" | "active" | "completed";
+export type FilterValuesType = 'all' | 'active' | 'completed';
 export type TodolistType = {
   id: string;
   title: string;
@@ -24,18 +48,18 @@ function App() {
 
   let [tasks, dispatchTasks] = useReducer(TaskReducer, {
     [todolistId1]: [
-      { id: v1(), title: "HTML&CSS", isDone: true },
-      { id: v1(), title: "JS", isDone: true },
+      { id: v1(), title: 'HTML&CSS', isDone: true },
+      { id: v1(), title: 'JS', isDone: true },
     ],
     [todolistId2]: [
-      { id: v1(), title: "Milk", isDone: true },
-      { id: v1(), title: "React Book", isDone: true },
+      { id: v1(), title: 'Milk', isDone: true },
+      { id: v1(), title: 'React Book', isDone: true },
     ],
   });
 
   let [todolists, dispatchTodolists] = useReducer(TodoListsReducer, [
-    { id: todolistId1, title: "What to learn", filter: "all" },
-    { id: todolistId2, title: "What to buy", filter: "all" },
+    { id: todolistId1, title: 'What to learn', filter: 'all' },
+    { id: todolistId2, title: 'What to buy', filter: 'all' },
   ]);
 
   function removeTask(id: string, todolistId: string) {
@@ -78,13 +102,7 @@ function App() {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-            >
+            <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
               <Menu />
             </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
@@ -95,7 +113,7 @@ function App() {
         </AppBar>
       </Box>
       <Container fixed>
-        <Grid container style={{ padding: "20px" }}>
+        <Grid container style={{ padding: '20px' }}>
           <AddItemForm addItem={addTodolist} />
         </Grid>
         <Grid container spacing={3}>
@@ -103,16 +121,16 @@ function App() {
             let allTodolistTasks = tasks[tl.id];
             let tasksForTodolist = allTodolistTasks;
 
-            if (tl.filter === "active") {
+            if (tl.filter === 'active') {
               tasksForTodolist = allTodolistTasks.filter((t) => !t.isDone);
             }
-            if (tl.filter === "completed") {
+            if (tl.filter === 'completed') {
               tasksForTodolist = allTodolistTasks.filter((t) => t.isDone);
             }
 
             return (
               <Grid item>
-                <Paper style={{ padding: "10px" }}>
+                <Paper style={{ padding: '10px' }}>
                   <Todolist
                     key={tl.id}
                     id={tl.id}
