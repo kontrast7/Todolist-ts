@@ -1,6 +1,6 @@
 {
-  "name": "todolist-ts",
-  "homepage": "https://kontrast7.github.io/todolist-ts",
+  "name": "todolist",
+  "homepage": "https://kontrast7.github.io/todolist",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

@@ -5,12 +5,9 @@ import {
     Button,
     CircularProgress,
     Container,
-    IconButton,
     LinearProgress,
     Toolbar,
-    Typography
 } from '@material-ui/core'
-import {Menu} from '@material-ui/icons'
 import {TodolistsList} from '../features/TodolistsList/TodolistsList'
 import {ErrorSnackbar} from '../components/ErrorSnackbar/ErrorSnackbar'
 import {useDispatch, useSelector} from 'react-redux'
@@ -32,11 +29,11 @@ function App({demo = false}: PropsType) {
 
     useEffect(() => {
         dispatch(initializeAppTC())
-    }, [])
+    }, [dispatch])
 
     const logoutHandler = useCallback(() => {
         dispatch(logoutTC())
-    }, [])
+    }, [dispatch])
 
     if (!isInitialized) {
         return <div
