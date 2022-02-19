@@ -1,6 +1,7 @@
 {
-  "name": "it-incubator-todolist-ts",
+  "name": "todolist-ts",
   "version": "0.1.0",
+  "homepage": "https://kontrast7.github.io/todolist",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.10.1",
@@ -30,6 +31,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -60,6 +63,7 @@
     "@storybook/addons": "^5.3.19",
     "@storybook/preset-create-react-app": "^3.1.3",
     "@storybook/react": "^5.3.19",
+    "gh-pages": "^3.2.3",
     "jest-image-snapshot": "^4.0.2",
     "jest-puppeteer": "^4.4.0",
     "puppeteer": "^5.1.0",
