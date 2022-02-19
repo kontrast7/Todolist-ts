@@ -1,7 +1,7 @@
 {
   "name": "todolist-ts",
+  "homepage": "https://kontrast7.github.io/todolist-ts",
   "version": "0.1.0",
-  "homepage": "https://kontrast7.github.io/todolist",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.10.1",
